@@ -1,8 +1,8 @@
 let todos=JSON.parse(localStorage.getItem("todos")) || [];
 
-const list = document.querySelector("#list");
-const input = document.querySelector("#todo-input");
-const addBtn = document.querySelector("#add-btn");
+const list = document.querySelector(".list");
+const input = document.querySelector(".todo-input");
+const addBtn = document.querySelector(".add-btn");
 
 function createTodo(text){
 return {
@@ -70,14 +70,14 @@ if(!li) return;
 
 const id=Number(li.dataset.id);
 
-if(event.target.closest(".delete-btn")){
+if(event.target.closest("delete-btn")){
 todos=todos.filter(todo=>todo.id!==id);
 saveTodos();
 renderTodos(todos);
 return;
 };
 
-if(event.target.closest(".edit-btn")){
+if(event.target.closest("edit-btn")){
 const span=li.querySelector(".text");
 
 const editInput = document.createElement("input");
@@ -135,11 +135,11 @@ let time=0;
 let  intervalId=null;
 let records=JSON.parse(localStorage.getItem("records")) || [];
 
-const display=document.querySelector("#display");
-const startBtn=document.querySelector("#start-btn");
-const pauseBtn=document.querySelector("#pause-btn");
-const resetBtn=document.querySelector("#reset-btn");
-const recordList=document.querySelector("#record-list");
+const display=document.querySelector(".display");
+const startBtn=document.querySelector(".start-btn");
+const pauseBtn=document.querySelector(".pause-btn");
+const resetBtn=document.querySelector(".reset-btn");
+const recordList=document.querySelector(".record-list");
 
 function createRecord(time){
 return {
