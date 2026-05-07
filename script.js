@@ -70,14 +70,14 @@ if(!li) return;
 
 const id=Number(li.dataset.id);
 
-if(event.target.closest("delete-btn")){
+if(event.target.closest(".delete-btn")){
 todos=todos.filter(todo=>todo.id!==id);
 saveTodos();
 renderTodos(todos);
 return;
 };
 
-if(event.target.closest("edit-btn")){
+if(event.target.closest(".edit-btn")){
 const span=li.querySelector(".text");
 
 const editInput = document.createElement("input");
@@ -117,6 +117,7 @@ renderTodos(todos);
 return;
 }
 
+if(!event.target.closest(".delete-btn")&&!event.target.closest(".edit-btn")){
 todos = todos.map(todo => {
   if (todo.id === id) {
     return { ...todo, completed: !todo.completed };
@@ -126,7 +127,7 @@ todos = todos.map(todo => {
 
 saveTodos();
 renderTodos(todos);
-
+}
 });
 
 renderTodos(todos);
@@ -151,8 +152,17 @@ time: time
 function createRecordItem(record){
 const recordLi=document.createElement("li");
 recordLi.dataset.id=record.id;
-recordLi.textContent=formatTime(record.time);
 
+const span=document.createElement("span");
+span.classList.add("record-text");
+span.textContent=formatTime(record.time);
+
+const deleteBtn=document.createElement("button");
+deleteBtn.classList.add("delete-time-btn");
+deleteBtn.textContent="";
+
+recordLi.appendChild(span);
+recordLi.appendChild(deleteBtn);
 return recordLi;
 };
 
@@ -200,6 +210,17 @@ clearInterval(intervalId);
 intervalId=null;
 time=0;
 render();
+});
+
+recordList.addEventListener("click",(event)=>{
+  if(event.target.closest(".delete-time-btn")){
+    const recordLi=event.target.closest("li");
+    const id=Number(recordLi.dataset.id);
+    records=records.filter(record=>record.id!==id);
+    saveRecords();
+    render();
+    return;
+  }
 });
 
 render();

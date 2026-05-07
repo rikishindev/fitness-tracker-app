@@ -10,9 +10,13 @@ font-family:Arial,sans-serif;
 }
 
 main {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: 800px;
+  width:100%;
+  margin:auto;
+  padding: 40px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
 header{
@@ -22,13 +26,16 @@ color:white;
 text-align:center;
 }
 
+.todos, .list,.record-list{
+  width:100%;
+}
+
 .todos{
 display:flex;
 justify-content:center;
 align-items:center;
 background-color:white;
 gap:10px;
-margin-bottom:20px;
 padding:15px;
 border-radius:12px;
 box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -80,24 +87,27 @@ align-items:center;
 background:white;
 border-radius:8px;
  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+border:none;
 }
 
-.delete-btn::before{
+.delete-btn::before , .delete-time-btn::before{
 content:"🗑️";
 }
 .edit-btn::before {
   content: "✏️";
 }
-.delete-btn, 
+.delete-btn, .delete-time-btn,
 .edit-btn{
 border:none;
 background:none;
 font-size:16px;
 cursor:pointer;
+margin-right:20px;
+transition:0.2s;
 }
-.delete-btn:hover, 
+.delete-btn:hover, .delete-time-btn:hover,
 .edit-btn:hover{
-transform:scale(1.2);
+transform:scale(1.1);
 }
 .completed .text{
 text-decoration:line-through;
@@ -142,14 +152,45 @@ font-weight:bold;
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  max-width: 620px;
+  width:100%;
 }
 .record-list li{
 padding: 10px;
 margin-bottom:10px;
 display:flex;
+justify-content:space-between;
 align-items:center;
 background:white;
 border-radius:8px;
 box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+@media screen and (max-width:768px){
+  header h1{
+    font-size:2rem;
+  }
+  main{
+    padding:20px 12px;
+  }
+  .display{
+    font-size:3rem;
+  }
+  .controls{
+    gap:12px;
+  }
+  .edit-btn,
+.delete-btn,
+.delete-time-btn{
+width:36px;
+height:36px;
+}
+.edit-btn::before,
+  .delete-btn::before,
+  .delete-time-btn::before{
+    font-size:18px;
+  }
+
+.list li, record-list li{
+  padding:12px;
+}
 }
